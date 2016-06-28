@@ -7,19 +7,14 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-// const parts = require('./webpack/lib');
-
-
 const PATHS = {
-    style: './style',
     app: './app',
     build: './build'
 };
 
-const config = {
+const common = {
     entry: {
         app: PATHS.app,
-        style: PATHS.style
     },
     output: {
         filename: '[name].js',
@@ -59,15 +54,19 @@ const config = {
     ]
 };
 
-// var config;
+var config;
 
 // Detect how npm is run and branch based on that
-// switch(process.env.npm_lifecycle_event) {
-//     case 'build':
-//         config = merge(common, parts.production());
-//     break;
-//     default:
-//         config = merge(common, parts.development());
-// }
+switch(process.env.npm_lifecycle_event) {
+    case 'build':
+        config = merge(common, {
+
+        });
+    break;
+    default:
+        config = merge(common, {
+
+        });
+}
 
 module.exports = validate(config);
