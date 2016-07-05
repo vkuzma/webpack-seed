@@ -16,9 +16,6 @@ const PATHS = {
 };
 
 const common = {
-    entry: {
-        app: PATHS.app,
-    },
     output: {
         filename: '[name].js',
     	path: path.resolve(PATHS.build),
@@ -47,6 +44,11 @@ const common = {
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
             {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
         ],
+    },
+    resolve: {
+        root: [
+            __dirname
+        ]
     },
     postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
     plugins: [
