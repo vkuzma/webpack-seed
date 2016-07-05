@@ -11,7 +11,8 @@ const autoprefixer = require('autoprefixer');
 
 const PATHS = {
     app: './app',
-    build: './build'
+    example: './example/example',
+    build: './dist'
 };
 
 const common = {
@@ -21,6 +22,8 @@ const common = {
     output: {
         filename: '[name].js',
     	path: path.resolve(PATHS.build),
+        libraryTarget: 'umd',
+        library: 'LibraryName'
     },
     module: {
         loaders: [{
@@ -49,7 +52,7 @@ const common = {
     plugins: [
         new ExtractTextPlugin('[name].css'),
         new ProgressBarPlugin(),
-        new CleanWebpackPlugin(['build'], {
+        new CleanWebpackPlugin(['dist'], {
             root: __dirname,
             verbose: true,
             dry: false
@@ -63,13 +66,25 @@ var config;
 switch(process.env.npm_lifecycle_event) {
     case 'build':
         config = merge(common, {
-
-        });
+        entry: {
+            app: PATHS.app,
+        },
+        output: {
+            filename: '[name].js'
+        },
+        externals: [
+        ]
+    });
     break;
     default:
-        config = merge(common, {
-
-        });
+    config = merge(common, {
+        entry: {
+            example: PATHS.example,
+        },
+        output: {
+            filename: '[name].js',
+        }
+    });
 }
 
 module.exports = validate(config);

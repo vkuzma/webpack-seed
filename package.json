@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js",
-    "dev": "./node_modules/webpack/bin/webpack.js -w"
+    "dev": "./node_modules/webpack/bin/webpack.js -w",
+    "dev-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base example/"
   },
   "author": "Vladimir Kuzma",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "progress-bar-webpack-plugin": "^1.8.0",
     "webpack-merge": "^0.14.0",
     "webpack-validator": "^2.2.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
   }
 }
